@@ -1,0 +1,29 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+nav{
+    position: fixed;
+    background-color: cyan;
+    border: 2px solid black;
+    top: 0px;
+    font-size: 20px;
+    width: 100%;
+    
+}
+nav ul {
+    display: inline-block;
+    
+}
+ul{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+ul:last-child{
+    position: fixed;
+    color: green;
+    right: 50px;
+}
+section{
+    margin-top: 100px;
+}

@@ -1,0 +1,21 @@
+p:nth-of-type(1){
+    font-family: 'Times New Roman', Times, serif ;
+    font-size: 100px;
+    font-weight: 100;
+    font-style: italic;
+    /* line-height: 0.9rem; */
+    letter-spacing: 1rem;
+}
+h1{
+    text-align: center;
+    /* shadow x y sharness color */
+    text-shadow:
+    5px 5px 1px rgb(9, 78, 78),
+    2px 2px 1px rgb(9, 78, 78),
+    2px 2px 1px rgb(9, 78, 78),
+    2px 2px 1px rgb(9, 78, 78)
+     ;
+    /* margin: 10px auto; */
+    border: 2px solid black;
+    box-shadow: 5px 5px 1px red;
+}

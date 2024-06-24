@@ -450,7 +450,126 @@ public class medium {
        
         return children;
     }
+    // 300. Longest Increasing Subsequence
+    public static int lengthOfLIS(int[] a) {
+        int n=a.length;
+        int arr[]=new int[n];
+        Arrays.fill(arr, 1);
+        int ans=1;
+        for(int i=n-2;i>=0;i--){
+            for(int j=i+1;j<n;j++){
+                if(a[i]<a[j])arr[i]=Math.max(arr[i], 1+arr[j]);
+            }
+            ans=Math.max(ans, arr[i]);
+        }
+        return ans;
+    }
+    // 1052. Grumpy Bookstore Owner
+    public static int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+        int satisfied=0;
+        int currWin=0,max=0;
+        int l=0;
+        for(int i=0;i<customers.length;i++){
+            if(grumpy[i]==0)satisfied+=customers[i];
+            else currWin+=customers[i];
+            if(i-l+1>minutes){
+                if(grumpy[l]==1){
+                    currWin-=customers[l];
+                }
+                l++;
+            }
+            max=Math.max(max, currWin);
+        }
+        return satisfied+max;
+    }
+    // 1143. Longest Common Subsequence
+    public static int longestCommonSubsequence(String text1, String text2) {
+        int m=text1.length(),n=text2.length();
+        int dp[][]=new int[m+1][n+1];
+        char []t1=text1.toCharArray();
+        char t2[]=text2.toCharArray();
+        for(int i=m-1;i>=0;i--){
+            for(int j=n-1;j>=0;j--){
+                if(t1[i]==t2[j])dp[i][j]=1+dp[i+1][j+1];
+                else dp[i][j]=Math.max(dp[i][j+1],dp[i+1][j]);
+            }
+        }
+        return dp[0][0];
+    }
+    // 200. Number of Islands
+    public static int numIslands(char[][] grid) {
+        if(grid.length==0)return 0;
+        int ans=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]=='1'){
+                    dfs(grid,i,j);
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+    public static void dfs(char grid[][],int r,int c){
+       if(r<0 || r>=grid.length ||c<0 ||c>=grid[0].length || grid[r][c]!='1')return;
+        grid[r][c]='0';
+        dfs(grid, r+1, c);
+        dfs(grid, r-1, c);
+        dfs(grid, r, c+1);
+        dfs(grid, r, c-1);
 
+    }
+    // 1248. Count Number of Nice Subarrays
+    public static int numberOfSubarrays(int[] nums, int k) {
+        int ans=0;
+        int l=0,m=0;
+        int count=0;
+        for(int r=0;r<nums.length;r++){
+            if(nums[r]%2!=0)count++;
+            while(count>k){
+                if(nums[l]%2!=0)count--;
+                l++;
+                m=l;
+            }
+            if(count==k){
+                while (nums[m]%2==0) {
+                    m++;        
+                }
+                ans+=m-l+1;
+            }
+
+        }
+        return ans;
+    }
+    // 100344. Minimum Operations to Make Binary Array Elements Equal to One I
+    public static int minOperations(int[] nums) {
+        int l=0;
+        int ans=0;
+        int len=nums.length;
+        for(;l<len-3;l++){
+            if(nums[l]==1)continue;
+            else break;
+        }
+        for(int r=l;r<len;r++){
+            while(l<=r &&nums[l]==1)l++;
+            if(r-l+1==3){
+                int n=3;
+                int i=l;
+                while(n-->0){
+                    if(nums[i]==1)nums[i]=0;
+                    else nums[i]=1;
+                    i++;
+                }
+                ans++;
+            }
+           
+        }
+        for(int i=1;i<=3;i++){
+            if(nums[len-i]==0)return -1;
+        }
+       
+        return ans;
+    }
     // 838. Push Dominoes
     public static String pushDominoes(String dominoes) {
         char a[]=dominoes.toCharArray();
@@ -459,7 +578,7 @@ public class medium {
         
     }
     public static void main(String[] args) {
-      System.out.println(openLock(new String[]{"0201","0101","0102","1212","2002"}, "0202"));
+      System.out.println(minOperations(new int[]{0,1,1,1,0,0}));
         
         
     }
