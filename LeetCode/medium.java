@@ -3,14 +3,21 @@ package LeetCode;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
+
+import LeetCode.hard.TreeNode;
 
 public class medium {
     //3164. Find the Number of Good Pairs II
@@ -570,6 +577,305 @@ public class medium {
        
         return ans;
     }
+    // 995. Minimum Number of K Consecutive Bit Flips
+     public static int minKBitFlips(int[] nums, int k) {
+        int ans=0;
+        int flip=0;
+        for(int i=0;i<nums.length;i++){
+            if(i-k>=0 && nums[i-k]==2)flip--;
+            if((nums[i]+flip)%2==0){
+                if(i+k>nums.length)return -1;
+                ans++;
+                flip++;
+                nums[i]=2;
+            }
+            
+            }         
+       
+        return ans;   
+    }
+    // 2439. Minimize Maximum of Array
+    public static int minimizeArrayValue(int[] nums) {
+        long ans=nums[0];
+        long total=ans;
+        for(int i=1;i<nums.length;i++){
+            total+=nums[i];
+            if(total>ans*(i+1)){
+                ans=(total-1)/(i+1)+1;
+            }
+           
+        }
+        return (int)ans;
+        
+    }
+    // 2405. Optimal Partition of String
+    public static int partitionString(String s) {
+        int ans=1;
+        HashSet<Character> set=new HashSet<>();
+        for(char c:s.toCharArray()){
+            if(set.contains(c)){
+                ans++;
+                set.clear();
+            }
+            set.add(c);
+        }
+        return ans;
+        
+    }
+    // 120. Triangle
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int dp[]=new int[triangle.size()+1];
+        for(int i=triangle.size()-1;i>=0;i--){
+            for(int j=0;j<triangle.get(i).size();j++){
+                int n=triangle.get(i).get(j);
+                dp[j]=n+Math.min(dp[j],dp[j+1]);
+            }
+        }
+        return dp[0];
+    }
+    // 875. Koko Eating Bananas
+    public static int minEatingSpeed(int[] piles, int h) {
+        int ans=0;
+        for(int i:piles){
+            if(i>ans)ans=i;
+        }
+        int l=1,r=ans;
+        while(l<=r){
+            int m=(l+r)/2;
+            int hours=0;
+            for(int i:piles){
+                hours+=Math.ceil((double)i/m);
+            }
+            if(hours<=h){
+                ans=Math.min(ans, m);
+                r=m-1;
+            }else l=m+1;
+            
+        }
+        return ans;
+    }
+    // 698. Partition to K Equal Sum Subsets
+    public static boolean canPartitionKSubsets(int[] nums, int k) {
+       
+        int sum=0;
+        for(int i:nums)sum+=i;
+        int target=sum/k;
+        
+        return canPartition(nums, 0, k, 0, target);
+    }
+    public static boolean canPartition(int nums[],int i,int k,int sum,int target){
+        if(k==0)return true;
+        if(target==sum){
+            return canPartition(nums, 0, k-1,0, target);
+        }
+        for(int j=i;j<nums.length;j++){
+            if(nums[j]!=-1 && sum+nums[j]<=target){
+            int a=nums[j];
+            nums[j]=-1;
+            
+            if(canPartition(nums, j+1, k, sum+a, target))return true;
+            nums[j]=a;
+        }
+        }
+        return false;
+    }
+    // 93. Restore IP Addresses
+    public static List<String> restoreIpAddresses(String s) {
+        List<String> ans=new ArrayList<>();
+        if(s.length()>12 || s.length()<4)return ans;
+        ip(ans, s.toCharArray(), 0, 0, new StringBuilder());
+        return ans;
+    }
+    public static void ip(List<String> ans,char c[],int i,int dots,StringBuilder sb){
+        if(dots==4 && i==c.length){
+            
+            ans.add(sb.substring(0, sb.length()-1));
+            return;
+        }
+        if(dots>4){
+            
+            return;}
+            int st=sb.length();
+        for (int j = i; j < Math.min(c.length, (i + 3)); j++) {
+            sb.append(c[j]);
+            System.out.println(sb.toString());
+            if (Integer.valueOf(sb.substring(sb.length() - 1 - (j - i))) < 256 && (i == j || sb.charAt(sb.length() - 1) != '0')) {
+              sb.append('.');
+              ip(ans, c, j + 1, dots + 1, sb);
+              sb.setLength(sb.length()-1);
+            }
+        }
+        sb.setLength(st);
+
+    }
+    // 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+    public static int numOfSubarrays(int[] arr, int k, int threshold) {
+        int ans=0;
+        int sum=0;
+        for(int i=0;i<k;i++){
+            sum+=arr[i];
+        }
+        for(int r=0;r<arr.length-k+1;r++){
+            sum+=arr[r+k-1];   
+            double avg=(double)sum/k;       
+            if(avg>=threshold)ans++;
+            sum-=arr[r];
+        }
+        return ans;
+    }
+    // 904. Fruit Into Baskets
+    public static int totalFruit(int[] fruits) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int l=0;
+        int ans=0;
+        int total=0;
+        for(int r=0;r<fruits.length;r++){
+            map.put(fruits[r], map.getOrDefault(fruits[r],0)+1);
+            total++;
+            while(map.size()>2){
+                int key=fruits[l];
+                map.put(key, map.get(key)-1);
+                total--;
+                l++;
+                if(map.get(key)==0)map.remove(key);
+            }
+            ans=Math.max(total, ans);
+        }
+        return ans;
+    }
+    public static int bestTeamScore(int[] scores, int[] ages) {
+        int n=ages.length;
+        int a[][]=new int[n][2];
+         int dp[]=new int[n];
+        for(int i=0;i<n;i++){
+           
+           a[i][0]=scores[i];
+           a[i][1]=ages[i];
+          
+        }   
+        Arrays.sort(a,(p,q)->p[0]==q[0]?p[1]-q[1]:p[0]-q[0]);
+        for(int i=0;i<n;i++)dp[i]=scores[i];
+        int ans=0;      
+        for(int i=0;i<n;i++){
+           int curr=a[i][0];
+           int cAge=a[i][1];
+           for(int j=0;j<i;j++){
+               int age=a[j][1];
+               if(cAge>=age){
+                   dp[i]=Math.max(dp[i],curr+dp[j]);
+               }
+           }
+          
+           ans=Math.max(ans,dp[i]);
+        }
+        return ans;
+       }
+    
+
+    // 399. Evaluate Division
+    public static double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        HashMap<String,HashMap<String,Double>> graph=new HashMap<>();
+     for(int i=0;i<equations.size();i++){
+        String s=equations.get(i).get(0);
+        String d=equations.get(i).get(1);
+        if(!graph.containsKey(s))graph.put(s,new HashMap<>());
+        if(!graph.containsKey(d))graph.put(d,new HashMap<>());
+        graph.get(s).put(d,values[i]);
+        graph.get(d).put(s,1/values[i]);
+     } 
+     
+     double []ans=new double[queries.size()];
+     for(int i=0;i<ans.length;i++){
+        String a = queries.get(i).get(0), b = queries.get(i).get(1);
+            if(!graph.containsKey(a) || !graph.containsKey(b))ans[i]=-1.0;
+            else if(a.equals(b))ans[i]=1.0;
+            else ans[i] = dfs(graph,a,b,1,new HashSet<>());
+     }
+       return ans;
+    }   
+    public static double bfs( HashMap<String,HashMap<String,Double>> graph,String s,String d){
+        if (!graph.containsKey(s) || !graph.containsKey(d)) return -1.0;
+        Deque<Pairs> q = new ArrayDeque<>();
+        HashSet<String> set = new HashSet<>();
+        q.add(new Pairs(s, 1));
+        set.add(s);
+        while (!q.isEmpty()) {
+          Pairs temp = q.poll();
+          if (temp.w == 0.0) return -1.0; 
+          if (temp.s.equals(d)) return temp.w;
+          for (Map.Entry<String, Double> map : graph.get(temp.s).entrySet()) {
+            if (!set.contains(map.getKey())) {
+              q.add(new Pairs(map.getKey(), temp.w * map.getValue()));
+              set.add(map.getKey());
+            }
+          }
+        }
+        return -1.0;
+    }
+    
+    public static double dfs(HashMap<String, HashMap<String, Double>> graph,String a,
+    String b, double prod, Set<String> visited){
+        if(a.equals(b))return prod;
+        double val =-1.0;
+        if(visited.contains(a))return val;
+        visited.add(a);
+        for(String key: graph.get(a).keySet()){
+            val = dfs(graph,key,b,prod*graph.get(a).get(key),visited);
+            if(val != -1.0)return val;
+        }
+        return val;
+    }
+
+    // 2542. Maximum Subsequence Score
+    public static long maxScore(int[] nums1, int[] nums2, int k) {
+        int n=nums1.length;
+        int a[][]=new int[n][2];
+        for(int i=0;i<n;i++){
+            a[i][0]=nums1[i];
+            a[i][1]=nums2[i];
+        }
+        Arrays.sort(a,(p,q)->q[1]-p[1]);
+        PriorityQueue<Integer>q=new PriorityQueue<>();
+        long sum=0;
+        long ans=0;
+        for(int i=0;i<n;i++){
+            sum+=a[i][0];
+            q.add(a[i][0]);
+            if(q.size()>k){
+                int p=q.poll();
+                sum-=p;
+            }
+            if(q.size()==k){
+                ans=Math.max(ans, sum*a[i][1]);
+            }
+        }
+        return ans;
+    }
+    static class Pairs{
+        String s;
+        double w;
+        Pairs(String s,double w){
+            this.s=s;
+            this.w=w;
+        }
+    }
+    //2369. Check if There is a Valid Partition For The Array
+    public static boolean validPartition(int[] nums) {
+        int n=nums.length-1;
+        boolean two=nums[n]==nums[n-1];
+        if(n+1==2)return two;
+        boolean three=(nums[n]==nums[n-1] && nums[n]==nums[n-2])||(nums[n]==nums[n-1]+1 && nums[n-1]==nums[n-2]+1);
+        boolean dp[]={three,two,false};
+        for(int i=n-3;i>=0;i--){
+            boolean curr=(nums[i]==nums[i+1])&&dp[1];
+            curr=curr||((nums[i]==nums[i+1] && nums[i]==nums[i+2])||( nums[i]+1==nums[i+1] && nums[i]+2==nums[i+2]))&&dp[2];
+            dp[2]=dp[1];
+            dp[1]=dp[0];
+            dp[0]=curr;
+        }
+        return dp[0];
+    }
+
     // 838. Push Dominoes
     public static String pushDominoes(String dominoes) {
         char a[]=dominoes.toCharArray();
@@ -577,10 +883,57 @@ public class medium {
         return new String(a);
         
     }
+    
     public static void main(String[] args) {
-      System.out.println(minOperations(new int[]{0,1,1,1,0,0}));
-        
+     
+        System.out.println(validPartition(new int []{473928,473929,473930}));
+
+     
+    }
+    public static int ques(){
+        int a[][]=new int [6][6];
+     
+      int i=3,j=4;
+      Deque<Knight>q=new ArrayDeque<>();
+      q.add(new Knight(3, 4,0));
+      a[i][j]=1;
+      while (!q.isEmpty()) {
+       
+            Knight pair = q.poll();
+            for (int idx = 0; idx < 8; idx++) {
+              int x = pair.r + dicX[idx];
+              int y = pair.c + dicY[idx];
+      
+              if (x ==0 && y ==0) {
+                
+                return pair.dis; 
+              }
+      
+              if (valid(a, x, y)) {
+                a[x][y] = 1;
+                q.add(new Knight(x, y,pair.dis+1));
+              }
+        }
+    }
+        return -1;
+    }
+    static int  dicX[]={-2,-2,-1,-1,1,1,2,2};
+    static int dicY[]={-1,1,-2,2,-2,2,-1,1};
+    public static boolean valid(int a[][],int i,int j){
+        if(i<0 ||j<0||i>=a.length||j>=a[0].length||a[i][j]==1)return false;
+        return true;
+    }
+    static class Knight {
+        int r;
+        int c;
+        int dis;
+        Knight(int r,int c,int d){
+            this.r=r;
+            this.c=c;
+            this.dis=d;
+        }
         
     }
+   
     
 }

@@ -95,16 +95,16 @@ public class Graph {
 
         createGraph(graph);
         boolean vis[]=new boolean[v];
-        path(graph, vis, 0, "0", 5);
+        // path(graph, vis, 0, "0", 5);
 
 
 
-        // for(int i=0;i<v;i++){
-        //     if(vis[i]==false){
-        //        //  bfs(graph, v,vis,i);
-        //          dfs(graph,i,vis);
-        //     }
-        // }
+        for(int i=0;i<v;i++){
+            if(vis[i]==false){
+               //  bfs(graph, v,vis,i);
+                 dfs(graph,i,vis);
+            }
+        }
 
         
         // for(int i=0;i<graph[2].size();i++){
