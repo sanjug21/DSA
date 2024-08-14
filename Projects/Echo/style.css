@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.parent{
+    
+    margin:12vh auto ;
+    width: 70%;
+    height: 60vh;
+    border: 2px solid coral;
+    box-shadow: 10px 10px 50px coral, -10px -10px 50px coral, -10px 10px 50px coral, 10px -10px 50px coral ; 
+    border-radius: 10px;
+}
+
+.row{
+    
+ height: 100%;
+}
+.c1{
+    display: flex;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    justify-content: center;
+    align-items: center;
+   
+}
+.echo {
+   font-size: 50px; 
+
+
+  font-family:cursive;
+  font-optical-sizing: auto;
+ 
+
+}

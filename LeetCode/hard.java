@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class hard {
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+             }
+         }
 
     // 149. Max Points on a Line
     public static int maxPoints(int[][] points) {
@@ -251,20 +264,55 @@ public class hard {
         }
        return ans; 
     }
-    public static void main(String[] args) {
-       System.out.println(longestIncreasingPath(new int[][]{{3,4,5},{3,2,6},{2,2,1}}));
+    // 1857. Largest Color Value in a Directed Graph
+    public static int largestPathValue(String colors, int[][] edges) {
+        HashMap<Integer,List<Integer>>g=new HashMap<>();
+        for(int i[]:edges){
+            g.putIfAbsent(i[0], new ArrayList<>());
+            g.get(i[0]).add(i[1]);
+        }
+        int n=colors.length();
+        int [][]map=new int[n][26];
+        HashSet<Integer> vis=new HashSet<>();
+        HashSet<Integer> path=new HashSet<>();
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans=Math.max(ans, dfs(g, vis, path, map, colors, i));
+          
+            
+        }
+        
+        return ans==Integer.MAX_VALUE?-1:ans;
     }
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-             }
-         }
-    
+    public static int dfs( HashMap<Integer,List<Integer>>g,HashSet<Integer> vis,HashSet<Integer> path,int [][]map,String colors,int curr){
+        if(path.contains(curr))return Integer.MAX_VALUE;
+        if(vis.contains(curr))return 0;
+        vis.add(curr);
+        path.add(curr);
+        int colIdx=colors.charAt(curr)-'a';
+        map[curr][colIdx]=1;
+        if(g.get(curr)!=null){
+            for(int nei:g.get(curr)){
+                if(dfs(g, vis, path, map, colors, nei)==Integer.MAX_VALUE){
+                  
+                    return Integer.MAX_VALUE;}
+                for(int i=0;i<26;i++){
+                    int add=i==colIdx?1:0;
+                    map[curr][i]=Math.max(map[curr][i],add+map[nei][i]);
+                }
+            }
+        }
+        path.remove(curr);
+        int ans=0;
+        for(int i=0;i<26;i++){
+            ans=Math.max(ans, map[curr][i]);
+        }
+        return ans;
+    }
+  
+
+    public static void main(String[] args) {
+       System.out.println();
+       
+    }  
 }

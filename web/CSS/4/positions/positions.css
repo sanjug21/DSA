@@ -12,11 +12,11 @@ div{
 }
 
 /* static apne normal flow ko nh chhodta isme koi offset kaam nh karte */
-/* #static #mid{
+#static #mid{
     position: static;
     top: 100px;
     left: 100px;
-} */
+}
 
 
 /* Relative */

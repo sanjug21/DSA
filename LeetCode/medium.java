@@ -18,6 +18,7 @@ import java.util.Stack;
 import java.util.TreeSet;
 
 import LeetCode.hard.TreeNode;
+import SuperClass.stack;
 
 public class medium {
     //3164. Find the Number of Good Pairs II
@@ -875,7 +876,290 @@ public class medium {
         }
         return dp[0];
     }
+    // 207. Course Schedule
+    public static boolean canFinish(int numCourses, int[][] prerequisites) {
+        HashMap<Integer,List<Integer>>graph=new HashMap<>();
+        for(int []i:prerequisites){
+            graph.putIfAbsent(i[0], new ArrayList<>());
+            graph.get(i[0]).add(i[1]);
+        }
+        for(int i=0;i<numCourses;i++){
+            if(!dfs(graph, new HashSet<>(),i))return false;
+        }
+        return true;
+    }
+    public static boolean dfs(HashMap<Integer,List<Integer>>graph,HashSet<Integer> set,int curr){
+        if(set.contains(curr))return false;
+        if(graph.get(curr)==null)return true;
+        set.add(curr);
+        for(int i:graph.get(curr)){
+            if(!dfs(graph, set, i))return false;
+        }
+        set.remove(curr);
+        graph.put(curr, null);
+        return true;
+    }
+    // 100351. Alternating Groups II
+    public static int numberOfAlternatingGroups(int[] colors, int k) {
+        int n=colors.length;
+       int ans=0;
+       Deque<Integer>q=new LinkedList<>();
+       HashSet<Integer>set=new HashSet<>();
+       
+       for(int i=0;i<k+n;i++){
+            int r=i%n;
+            if(set.contains(r))break;
+            if(!q.isEmpty()&&q.peekLast()!=colors[r]){
+                q.addLast(colors[r]);
+            }else{
+                q.clear();
+                q.addLast(colors[r]);
+            }
+           if(q.size()==k){
+            set.add(r);
+            q.poll();
+            ans++;}
+           
 
+       }
+       return ans;
+   }
+   // 100328. Generate Binary Strings Without Adjacent Zeros
+   public static List<String> validStrings(int n) {
+    List<String> ans=new ArrayList<>();
+    help(ans, n, new StringBuilder());
+        return ans;
+   }
+   public static void help(List<String> ans,int n,StringBuilder sb){
+    if(n==0){
+        ans.add(sb.toString());
+        return;
+    }
+    if(sb.length()==0 || sb.charAt(sb.length()-1)=='1'){
+        sb.append('0');
+        help(ans, n-1, sb);
+    sb.deleteCharAt(sb.length()-1);
+    }
+    sb.append('1');
+    help(ans, n-1, sb);
+    sb.deleteCharAt(sb.length()-1);
+   }
+//    1658. Minimum Operations to Reduce X to Zero
+   public static int minOperations(int[] nums, int x) {
+    int sum=0;
+    for(int i:nums)sum+=i;
+    int target=sum-x;
+    int max=-1;
+    int l=0;
+    int curr=0;
+    for(int r=0;r<nums.length;r++){
+      curr+=nums[r];
+      while(l<=r && curr>target){
+          curr-=nums[l];
+          l++;
+      }
+      if(curr==target){
+          max=Math.max(max,r-l+1);
+      }
+    }  
+    return max==-1?-1:nums.length-max;
+  }
+    //   1823. Find the Winner of the Circular Game
+    public int findTheWinner(int n, int k) {
+        int ans=0;
+        for(int i=1;i<n+1;i++){
+            ans=(ans+k)%i;
+        }
+        return ans+1;
+        // return help(ans, k)+1;
+    }
+    public static int help(int n,int k){
+        if(n==1)return 0;
+        return (help(n-1,k)+k)%n;
+    }
+    // 229. Majority Element II
+
+    public static List<Integer> majorityElement(int[] nums) {
+        int m1=0,m2=0;
+        int c1=0,c2=0;
+        for(int i:nums){
+            if(i==m1)c1++;
+            else if(i==m2)c2++;
+            else if(c1==0){
+                m1=i;
+                c1++;
+            }else if(c2==0){
+                m2=i;
+                c2++;
+            }else {
+                c1--;
+                c2--;
+            }
+        }
+        c1=0;
+        c2=0;
+        for(int i:nums){
+            if(i==m1)c1++;
+            else if(i==m2)c2++;
+        }
+        List<Integer>ans=new ArrayList<>();
+        int n=nums.length;
+        if(c1>n/3)ans.add(m1);
+        if(c2>n/3)ans.add(m2);
+        return ans;
+    }
+    // 2462. Total Cost to Hire K Workers
+    public static long totalCost(int[] costs, int k, int c) {
+        PriorityQueue<Integer> lq=new PriorityQueue<>();
+        PriorityQueue<Integer> rq=new PriorityQueue<>();
+        int l=0,r=costs.length-1;
+        long ans=0;
+        int idx=0;
+        while(l<=r && idx<c){
+            lq.add(costs[l]);
+            rq.add(costs[r]);
+            l++;
+            r--;
+            idx++;
+
+        }
+       
+        while(k--!=0){
+            
+            if(lq.peek()<=rq.peek()){
+                ans+=lq.poll();
+                if(l<=r){
+                    lq.add(costs[l]);
+                    l++;
+                }
+            }else{
+                ans+=rq.poll();
+                if(l<=r){
+                    rq.add(costs[r]);
+                    r--;
+                }
+            }
+            System.out.println(lq+""+rq);
+           System.out.println(ans); 
+        }
+        return ans;
+    }
+    // 1190. Reverse Substrings Between Each Pair of Parentheses
+    public static String reverseParentheses(String s) {
+        HashMap<Integer,Integer> pair=new HashMap<>();
+         Stack<Integer> st=new Stack<>();
+         char [] sb=s.toCharArray();
+         for(int i=0;i<sb.length;i++){
+          if(sb[i]=='('){
+              st.push(i);
+          }else if(sb[i]==')'){
+              int j=st.pop();
+              pair.put(i, j);
+              pair.put(j, i);
+          }
+         
+         }
+         StringBuilder ans=new StringBuilder();
+         int i=0,dir=1;
+         while(i<sb.length){
+          if(sb[i]=='(' || sb[i]==')'){
+              i=pair.get(i);
+              dir=-dir;
+          }else{
+              ans.append(sb[i]);
+          }
+          i+=dir;
+         } 
+         return ans.toString();  
+      }
+      // 1717. Maximum Score From Removing Substrings
+      public static int maximumGain(String s, int x, int y) {
+        int ans=0;
+        StringBuilder sb=new StringBuilder(s);
+        char f='a',l='b';
+        if(x<y){
+            f='b';
+            l='a';
+        }
+        ans+=score(sb, f, l, Math.max(x, y))+score(sb, l,f, Math.min(x, y));
+        return ans;
+      }
+      public static int score(StringBuilder sb,int f,int l,int scor){
+        int ans=0;
+        Stack<Character>s=new Stack<>();
+        
+        for(int i=0;i<sb.length();i++){
+
+            if(sb.charAt(i)==l && !s.isEmpty()&& s.peek()==f){
+                s.pop();
+                ans+=scor;
+            }else{
+                s.push(sb.charAt(i));
+            }
+        }
+        sb.setLength(0);
+        while(!s.isEmpty()){
+            sb.insert(0, s.pop());
+        }
+        return ans;
+      }
+    //   767. Reorganize String
+    public static String reorganizeString(String s) {
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(char c:s.toCharArray())map.put(c, map.getOrDefault(c, 0)+1);
+        PriorityQueue<Pair>pq=new PriorityQueue<>((a,b)->b.val-a.val);
+        System.out.println(map);
+        for(char c:map.keySet()){
+            pq.add(new Pair(map.get(c), c));
+        }
+        StringBuilder sb=new StringBuilder();       
+        Pair prev=null;
+        while(!pq.isEmpty() || prev!=null){
+            if(prev!=null && pq.isEmpty())return "";
+            Pair p=pq.poll();
+            sb.append(p.c);
+            if(prev!=null){
+                pq.add(prev);
+                prev=null;
+            }
+            if(p.val-1!=0)prev=new Pair(p.val-1,p.c);
+        }
+        return sb.toString();
+    }
+    static class Pair {
+        char c;
+        int val;
+        Pair(int val,char c){
+            this.c=c;
+            this.val=val;
+        }
+        
+    }
+    // 6 zig-zag
+    public static String convert(String s, int r) {
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<r;i++){
+            int inc=(r-1)*2;
+            for(int j=i;j<s.length();j+=inc){
+                sb.append(s.charAt(j));
+                if(i>0 &&i<(r-1)&& (j+inc-2*i)<s.length())sb.append(s.charAt(j+inc-2*i));
+            }
+        }    
+        return sb.toString();
+        }
+
+    // 368. Largest Divisible Subset
+    public List<Integer> largestDivisibleSubset(int[] nums) {
+        int n=nums.length;
+      ArrayList<Integer> dp[]  =new ArrayList[n];
+      for(int i=n-1;i>=0;i--){
+        for(int j=i+1;j<n;j++){
+            
+        }
+      }
+      
+
+    }
     // 838. Push Dominoes
     public static String pushDominoes(String dominoes) {
         char a[]=dominoes.toCharArray();
@@ -885,55 +1169,10 @@ public class medium {
     }
     
     public static void main(String[] args) {
-     
-        System.out.println(validPartition(new int []{473928,473929,473930}));
-
-     
-    }
-    public static int ques(){
-        int a[][]=new int [6][6];
-     
-      int i=3,j=4;
-      Deque<Knight>q=new ArrayDeque<>();
-      q.add(new Knight(3, 4,0));
-      a[i][j]=1;
-      while (!q.isEmpty()) {
        
-            Knight pair = q.poll();
-            for (int idx = 0; idx < 8; idx++) {
-              int x = pair.r + dicX[idx];
-              int y = pair.c + dicY[idx];
-      
-              if (x ==0 && y ==0) {
-                
-                return pair.dis; 
-              }
-      
-              if (valid(a, x, y)) {
-                a[x][y] = 1;
-                q.add(new Knight(x, y,pair.dis+1));
-              }
-        }
+
+     System.out.println();
     }
-        return -1;
-    }
-    static int  dicX[]={-2,-2,-1,-1,1,1,2,2};
-    static int dicY[]={-1,1,-2,2,-2,2,-1,1};
-    public static boolean valid(int a[][],int i,int j){
-        if(i<0 ||j<0||i>=a.length||j>=a[0].length||a[i][j]==1)return false;
-        return true;
-    }
-    static class Knight {
-        int r;
-        int c;
-        int dis;
-        Knight(int r,int c,int d){
-            this.r=r;
-            this.c=c;
-            this.dis=d;
-        }
-        
-    }
-   
+       
     
 }
