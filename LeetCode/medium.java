@@ -3,8 +3,7 @@ package LeetCode;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,10 +14,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeSet;
 
-import LeetCode.hard.TreeNode;
-import SuperClass.stack;
 
 public class medium {
     //3164. Find the Number of Good Pairs II
@@ -1148,18 +1144,6 @@ public class medium {
         return sb.toString();
         }
 
-    // 368. Largest Divisible Subset
-    public List<Integer> largestDivisibleSubset(int[] nums) {
-        int n=nums.length;
-      ArrayList<Integer> dp[]  =new ArrayList[n];
-      for(int i=n-1;i>=0;i--){
-        for(int j=i+1;j<n;j++){
-            
-        }
-      }
-      
-
-    }
     // 838. Push Dominoes
     public static String pushDominoes(String dominoes) {
         char a[]=dominoes.toCharArray();

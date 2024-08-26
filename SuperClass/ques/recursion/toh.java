@@ -15,7 +15,7 @@ toH(n-1,help,src,dest);
 public static void main(String Args[]){
 Scanner sc=new Scanner(System.in);
 int n=sc.nextInt();
-toH(4,"S","H","D");
+toH(n,"S","H","D");
 sc.close();
 }
 
