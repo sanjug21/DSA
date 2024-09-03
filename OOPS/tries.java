@@ -1,3 +1,5 @@
+package OOPS;
+
 public class tries {
     static class Node{
         Node[] child =new Node[26];

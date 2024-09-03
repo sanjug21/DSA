@@ -1,3 +1,5 @@
+package OOPS;
+
 class Detail{
     String name;
     int age;

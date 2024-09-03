@@ -1,3 +1,5 @@
+package OOPS;
+
 public class que {
    
         static class Node{

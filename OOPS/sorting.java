@@ -1,3 +1,5 @@
+package OOPS;
+
 import java.util.*;
 class sorting{
   public static void main(String args[]){

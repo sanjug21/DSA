@@ -1,3 +1,5 @@
+package OOPS;
+
 public class stac {
        static class Node{
         int data;
