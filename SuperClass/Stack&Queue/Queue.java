@@ -1,4 +1,4 @@
-package SuperClass;
+
 
 public class Queue {
     private int a[];

@@ -1,4 +1,4 @@
-package SuperClass.ques.recursion;
+package questions.recursion;
 
 public class countpath {
 public static int countPath(int a,int b,int c,int d){

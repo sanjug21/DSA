@@ -1,4 +1,4 @@
-package SuperClass.Tree;
+package Tree;
 
 public class bst {
     

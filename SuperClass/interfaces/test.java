@@ -1,4 +1,4 @@
-package SuperClass.interfaces;
+package interfaces;
 
 public class test implements a{
     public static void main(String[] args) {

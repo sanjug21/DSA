@@ -1,4 +1,4 @@
-package SuperClass.ques.recursion;
+package questions.recursion;
 import java.util.*;
 
 

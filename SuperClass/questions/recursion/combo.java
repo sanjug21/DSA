@@ -1,4 +1,5 @@
-package SuperClass.ques.recursion;
+package questions.recursion;
+
 
 public class combo{
 public static void combO(String a,String b){

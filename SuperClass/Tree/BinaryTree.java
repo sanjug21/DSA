@@ -1,4 +1,4 @@
-package SuperClass.Tree;
+package Tree;
 
 import java.util.Scanner;
 

@@ -1,4 +1,3 @@
-package SuperClass;
 
 import java.util.Arrays;
 

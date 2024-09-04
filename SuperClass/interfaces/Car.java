@@ -1,4 +1,4 @@
-package SuperClass.interfaces;
+package interfaces;
 
 public class Car {
     int price;

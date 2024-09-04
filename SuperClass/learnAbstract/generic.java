@@ -1,17 +1,47 @@
-package LinkedList;
-public class LinkedList {
+package learnAbstract;
+
+import java.util.*;
+public class generic  {
+    
+    public static void main(String[] args) {
+        Integer a[]={10,12,5,9,18,10};
+        String s[]={"Sanju","Shubham","Sagar","Rajesh"};
+        display(a);
+        display(s);
+        // Pair<String,Integer> p=new Pair<>();
+       LinkedList<String> ll=new LinkedList<>();
+       ll.addFirst("Sanju");
+       ll.addLast("singh");
+       ll.print();
+    }
+    public static <Type> void display(Type a[]){
+        System.out.println(Arrays.toString(a));
+    }
+}
+
+
+class Pair <N,A>{
+   N name;
+   A age;
+    Pair(N name,A age){
+        this.name=name;
+        this.age=age;
+    }
+    Pair(){}
+}
+ class LinkedList<T> {
     private Node head;
     private Node tail;
     private int size;
     class Node{
-        int val;
+        T val;
         Node next;
-        Node(int val){
+        Node(T val){
             this.val=val;
             this.next=null;
         }
     }
-    public void addFirst(int val){
+    public void addFirst(T val){
         Node node=new Node(val);
         if(size==0){
             head=node;
@@ -25,7 +55,7 @@ public class LinkedList {
         }
     }
 
-    public void addLast(int val){     
+    public void addLast(T val){     
         if(size==0){
             addFirst(val);
         }
@@ -98,21 +128,10 @@ public class LinkedList {
         tail.next=getNode(2);
     }
 
-    public static Node meet(LinkedList list){
+    public  Node meet(LinkedList<T> list){
         
         return null;
     }
-    public static void main(String[] args) {
-        LinkedList list=new LinkedList();
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        list.addLast(4);
-        list.addLast(5);
-        list.addLast(6);
-        list.createCycle();
-        list.print();
-       
-    }
+  
 
 }

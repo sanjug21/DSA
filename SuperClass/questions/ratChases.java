@@ -1,4 +1,4 @@
-package SuperClass.ques;
+package questions;
 import java.util.*;
 class ratChases {
     public static boolean t;

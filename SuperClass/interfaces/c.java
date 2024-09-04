@@ -1,4 +1,4 @@
-package SuperClass.interfaces;
+package interfaces;
 
 /**
  * c
