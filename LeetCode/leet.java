@@ -105,7 +105,8 @@ for(int i=0;i<a.length;i++){
     }
 
     // subset question
-      private static void result(int a[],List<List<Integer>> ans,List<Integer> list, int st,int ed){
+      @SuppressWarnings("unused")
+    private static void result(int a[],List<List<Integer>> ans,List<Integer> list, int st,int ed){
         if(!ans.contains(new ArrayList<>(list))){
         ans.add(new ArrayList<>(list));
         }
@@ -291,7 +292,7 @@ for(int i=0;i<a.length;i++){
     // combination Sum
     public static void combinationSum(int i,int a[],int sum,int target,List<Integer>temp,List<List<Integer>> ans){
         if(sum==target){
-            if(!temp.contains(temp))
+            if(!ans.contains(temp))
            { ans.add(new ArrayList<>(temp));
             return;}
         }

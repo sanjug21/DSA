@@ -34,7 +34,9 @@ let image=[
 
 let img=document.querySelector("img")
 let i=0;
-setInterval(()=>{
+const inter=setInterval(()=>{
+    
     img.setAttribute("href",image[i%3])
     i++
 },2000)
+clearInterval(inter)
