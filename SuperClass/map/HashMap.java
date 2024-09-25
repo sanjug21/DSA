@@ -32,6 +32,22 @@ public class HashMap <K,V>{
         nn.next=tmp;
         bkt.set(idx, nn);
         size++;
+        double lf=(1.0*size)/bkt.size();
+        double thf=2.0;
+        if(lf>thf)rehashing();
+    }
+    private void rehashing(){
+        ArrayList<Node>newBkt=new ArrayList<>();
+        for(int i=0;i<bkt.size()*2;i++)newBkt.add(null);
+        ArrayList<Node>oldBkt=bkt;
+        bkt=newBkt;
+        size=0;
+        for(Node n:oldBkt){
+            while(n!=null){
+                put(n.key, n.value);
+                n=n.next;
+            }
+        }
     }
     public boolean containsKey(K key){
         int idx=hashFun(key);
@@ -71,5 +87,15 @@ public class HashMap <K,V>{
         int bn=key.hashCode()%bkt.size();
         if(bn<0)bn+=bkt.size();
         return bn;
+    }
+    public String toString(){
+        String s="{";
+        for(Node n:bkt){
+            while(n!=null){
+                s=s+n.key+":"+n.value;
+                n=n.next;
+            }
+        }
+        return s+"}";
     }
 }
