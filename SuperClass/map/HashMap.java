@@ -42,6 +42,31 @@ public class HashMap <K,V>{
         }
         return false;
     }
+    public V get(K key){
+        int idx=hashFun(key);
+        Node tmp=bkt.get(idx);
+        while(tmp!=null){
+            if(tmp.key.equals(key))return tmp.value;
+            tmp=tmp.next;
+        }
+        return null;
+    }
+    public V remove(K key){
+        int idx=hashFun(key);
+        Node curr=bkt.get(idx);
+        Node prev=null;
+        while(curr!=null){
+            if(curr.key.equals(key))break;
+            prev=curr;
+            curr=curr.next;
+        }
+        if(curr==null)return null;
+        if(prev==null)bkt.set(idx,curr.next);
+        else prev.next=curr.next;
+        size--;
+        return curr.value;
+
+    }
     public int hashFun(K key){
         int bn=key.hashCode()%bkt.size();
         if(bn<0)bn+=bkt.size();
