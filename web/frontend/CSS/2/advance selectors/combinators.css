@@ -1,0 +1,24 @@
+/*Decendent Combinators */
+
+section section article div p{
+    color: red;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+/* Child Combinators */
+
+section>article>div>p{
+    color: green;
+}
+
+/* Adjcent sibling combinator */
+
+/* article+section{
+    color: yellow;
+} */
+
+/* General sibling */
+section~article{
+    background-color: cyan;
+}

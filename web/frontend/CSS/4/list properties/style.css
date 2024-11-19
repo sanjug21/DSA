@@ -1,0 +1,14 @@
+li:first-child{
+    /* color: coral;
+    list-style-type: square;
+    list-style-type: "\1F499";
+    border: 1px solid black;
+    list-style-position: outside;
+    list-style-image: url('https://unsplash.com/photos/a-field-with-a-lake-and-mountains-in-the-background-sWQoyuIWAAk'); */
+
+    list-style: "\1F440" outside ;
+
+}
+ul{
+    font-size: 25px;
+}

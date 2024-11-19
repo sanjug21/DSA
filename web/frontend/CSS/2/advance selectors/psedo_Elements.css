@@ -1,0 +1,21 @@
+/* It works on block elements only */
+
+div::first-letter{
+    font-size: 50px;
+    color: red;
+}
+p::first-line{
+    font-size: 25px;
+    color: cyan;
+}
+a::first-letter{
+    /* It won't work */
+    font-size: 40px;
+    color: coral;
+    
+}
+a::after{
+    content: "  \1F4F1";
+    font-size: 15px;
+    
+}

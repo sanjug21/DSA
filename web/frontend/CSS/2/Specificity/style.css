@@ -1,0 +1,27 @@
+
+/* Specificity */
+
+/* id>class>element */
+
+#first{
+    color: coral;
+}
+.sanju{
+    color: green;
+}
+div{
+    color: cyan;
+}
+div{
+    font-size: 20px;
+    color: goldenrod;
+}
+ol{
+    color: gray;
+    font-size: 25px;
+    border: 2px solid gold;
+}
+ol>li{
+    color: red;
+    border: 2px solid black;
+}

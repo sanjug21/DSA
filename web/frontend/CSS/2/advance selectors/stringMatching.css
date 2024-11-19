@@ -1,0 +1,21 @@
+    /* ^=  Starts with
+    $=  Ends With 
+    *=  Kahin pr ho */
+
+a[href="https://www.google.com/"]{
+    color: green;
+}
+
+a[href^="https://www.f"]{
+    color: coral;
+}
+
+a[href$="com/"]{
+    font-size: 25px;
+}
+
+a[href*="wiki"]{
+    background-color: cyan;
+    font-style: italic;
+    color: blue;
+}

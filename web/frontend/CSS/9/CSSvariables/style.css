@@ -1,0 +1,14 @@
+
+
+
+
+:root{
+    --bg-color-green:rgb(16, 129, 84);
+    --bg-color-red:coral;
+    --font-size-bada:36px;
+}
+
+article ,div{
+    background-color: var(--bg-color-red);
+    font-size: var(--font-size-bada);
+}

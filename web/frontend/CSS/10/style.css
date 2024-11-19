@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* #san{
+    
+    background-color: red;
+    width: 600px;
+    height: 600px;
+    border:2px solid black;
+    margin: 0px;
+    padding: 0px;
+} */
+
+.col-6, .col-2{
+    height: 30px;
+    background-color: cyan;
+    border: 2px solid black;
+}

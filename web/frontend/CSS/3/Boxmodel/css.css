@@ -1,0 +1,43 @@
+.box{
+    width: 400px;
+    height: 200px;
+    background-color: cyan;
+    border: 2px solid yellowgreen;
+    margin: 20px; 
+    /* top right bottom left */
+    /* vertical horizontal */
+    /* top l/r bottom */
+    padding: 10px 50px;
+}
+.box2{
+    width: 100px;
+    border: 2px solid goldenrod;
+}
+#p1{
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.a1 p{
+    /* Percentage */
+    font-size: 100%;
+}
+/* 
+ol{
+    font-size: 10px;
+}
+li{
+    font-size: 2em;
+} */
+
+li{
+    font-size: 2rem;
+}
+
+.viewport{
+    border: 2px solid goldenrod;
+    width: 50vw;
+    height: 50vw;
+
+}

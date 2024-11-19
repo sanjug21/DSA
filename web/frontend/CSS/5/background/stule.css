@@ -1,0 +1,18 @@
+.img{
+    border: 2px solid coral;
+    height: 98vh;
+    width: 80vw;
+    background-image:url('https://images.unsplash.com/photo-1718547389141-59736120c5b2?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D');
+    background-repeat: no-repeat;
+    background-size: 250px ;
+    background-size: cover;
+    /* background-size: contain; */
+    /* background-position: center; */
+
+
+    /* opacity: 0.9; */
+    filter: grayscale(10%);
+}
+.img:hover{
+    filter:grayscale(90%) ;
+}

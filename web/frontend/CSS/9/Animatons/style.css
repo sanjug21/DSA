@@ -1,0 +1,53 @@
+.box{
+    width: 200px;
+    height: 200px;
+    border: 2px red solid;
+    margin: 50px auto;
+    background-color: coral;
+}
+.box:hover{
+    /* background-color: greenyellow; */
+    
+    animation-name: increseHeight;
+    animation-duration: 2s;
+    animation-delay: 0s;
+    /* animation-timing-function: ease-in-out; */
+    animation-iteration-count: 2;
+
+    /* animation-direction: normal; */
+    /* animation-direction: alternate; */
+    /* animation-direction: alternate-reverse; */
+    /* animation-direction: reverse; */
+
+    /* animation-fill-mode: forwards; */
+    /* animation-fill-mode: backwards; */
+
+    /* animation-play-state:paused;
+    animation-play-state:running ; */
+
+    
+}
+@keyframes increseHeight {
+    /* from{
+        height: 200px;
+    }
+    to{
+        height: 400px;
+        background-color: cyan;
+    } */
+
+
+    0%{
+        height: 200px;
+        background-color: blue;
+    }
+    50%{
+        height: 400px;
+        background-color: green;
+    }
+    100%{
+        height: 600px;
+        background-color: REd;
+    }
+    
+}
