@@ -1,0 +1,46 @@
+/* Hover */
+
+h1{
+    background-color: cyan;
+}
+h1:hover{
+    background-color: goldenrod;
+}
+
+input:hover{
+    background-color: coral;
+    border: 5px solid pink;
+}
+
+/* active */
+
+a:active{
+    color: green;
+}
+
+/* Visited */
+a:visited{
+    color: red;
+}
+
+/* Focus */
+
+input:focus{
+    background-color: cyan;
+}
+
+/* nth of type */
+
+
+/* li:nth-of-type(odd){
+    color: red;
+} */
+/* li:nth-of-type(6){
+    color: green;
+} */
+/* li:last-child{
+    color: yellow;
+} */
+li:nth-of-type(2n+3){
+    color: goldenrod;
+}

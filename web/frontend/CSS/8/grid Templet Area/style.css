@@ -1,0 +1,43 @@
+.container{
+    width: 90%;
+    height: 90%;
+    background-color: coral;
+    border: 2px solid red;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 5fr 5fr 1fr;
+    grid-template-areas: "header header header"
+                         "nav1 main nav2"
+                         "nav1 main nav3"
+                         "footer footer footer"                        
+    ;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+.header{
+    background-color: goldenrod;
+    grid-area: header;
+}
+.main{
+    background-color: cyan;
+    grid-area: main;
+}
+.nav1{
+    background-color: yellow;
+    grid-area: nav1;
+}
+.nav2{
+    background-color: green;
+    grid-area: nav2;
+}
+.nav3{
+    background-color: rgb(122, 163, 122);
+    grid-area: nav3;
+}
+.footer{
+    background-color: blue;
+    grid-area: footer;
+}

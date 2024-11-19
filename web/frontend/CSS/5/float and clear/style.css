@@ -1,0 +1,11 @@
+.img1{
+    float: left;
+    margin: 10px;
+}
+.img2{
+    float: right;
+}
+p:nth-of-type(2), p:nth-of-type(3){
+    clear: left;
+    clear: right;
+}

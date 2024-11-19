@@ -1,0 +1,61 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+div{
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin: 0;
+    border: 2px solid black;
+}
+
+/* static apne normal flow ko nh chhodta isme koi offset kaam nh karte */
+#static #mid{
+    position: static;
+    top: 100px;
+    left: 100px;
+}
+
+
+/* Relative */
+
+#relative #mid{
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+/* Absolute */
+/* it depends upon parent one level upar aa jata h*/
+#absolute{
+    position: relative;
+}
+#absolute #mid{
+    position: absolute;
+    top: 0px;
+    left: 300px;
+}
+
+/* fixed */
+/* fixed parent pr depend nh karti ye hamesha body ke sath align hoga  */
+#fixed{
+    position: relative;
+    border: 2px solid;
+}
+#fixed #mid{
+    position: fixed;
+}
+
+
+/* Sticky */
+/* mixture of relative and fixed depend upon parent height and width */
+#sticky{
+  border: 2px solid black; 
+   height: 800px;
+}
+#sticky #mid{
+    position: sticky;
+    top: 100px;
+}

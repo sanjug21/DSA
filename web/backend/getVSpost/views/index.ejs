@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>get vs post</h1>
+
+    <h3>GET</h3>
+    <form action="/user" method="GET">
+
+        <label for="name"></label>
+        <input type="text" name="Name" id="name">
+        <label for="age" ></label>
+        <input type="text" name="Age" id="age">
+        <button type="submit" onclick="">Submit</button>
+    </form>
+
+    <br><br>
+    <hr>
+
+    <fieldset>
+        <legend>Post</legend>
+        <form action="/user" method="post">
+
+            <label for="name"></label>
+            <input type="text" name="Name" id="name">
+            <label for="age" ></label>
+            <input type="text" name="Age" id="age">
+            <button type="submit" onclick="">Submit</button>
+        </form>
+    </fieldset>
+
+</body>
+</html>

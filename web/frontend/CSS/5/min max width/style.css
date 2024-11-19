@@ -1,0 +1,6 @@
+div{
+    /* width: 700px; */
+    max-width: 1700px;
+    min-width: 300px;
+    background-color: cyan;
+}

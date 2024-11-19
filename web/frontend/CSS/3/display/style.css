@@ -1,0 +1,23 @@
+/* h3{
+    display: inline;
+    height: 400px;
+    width: 400px;
+    background: cyan;
+} */
+
+h3{
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+    background: cyan;
+}
+
+div{
+    display: inline-block;
+    height: 400px;
+    width: 32.5%;
+}
+div:nth-of-type(2){
+    /* display: none; */
+    visibility: hidden;
+}

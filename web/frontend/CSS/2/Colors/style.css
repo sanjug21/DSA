@@ -1,0 +1,14 @@
+div{
+    height: 200px;
+    width: 400px;
+    border: 2px solid black;
+}
+div:nth-of-type(1){
+    background-color: #ab918fff;
+}
+div:nth-of-type(2){
+    background-color: rgb(255, 35, 40);
+}
+div:nth-of-type(3){
+    background-color: rgba(55, 35, 250,0.2);
+}
