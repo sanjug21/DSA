@@ -1,26 +1,32 @@
 const express=require('express');
 const app=express();
 const path=require('path')
+const methodOverride=require('method-override')
+const {v4: uuid}=require('uuid')
+
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,"views"))
 app.use(express.static(path.join(__dirname,'public')))
 
+app.use(methodOverride('_method'))//method overide for post to patch 
 app.use(express.urlencoded({extended:true}))
+
+
 // dummy array
 let comments=[
     {
-        id:0,
+        id:uuid(),
         name:"Sanju",
         comment:"kuch nh"
     },
     {
-        id:1,
+        id:uuid(),
         name:"Shubham",
         comment:"syatem"
     },
     {
-        id:2,
+        id:uuid(),
         name:"Ritu",
         comment:"Me nh to kon be"
     }
@@ -49,7 +55,7 @@ app.post('/blogs',(req,res)=>{
     comments.push({
         name:Name,
         comment:comment,
-        id:comments.length
+        id:uuid()
     })
     
     res.redirect('/blogs')
@@ -64,6 +70,38 @@ app.get('/blogs/:id',(req,res)=>{
     let comment=comments.find(cmt=>cmt.id == id)
 
      res.render('show',{comment})
+})
+
+
+// task 5 ---> to get the form for ediiting
+
+app.get('/blogs/:id/edit',(req,res)=>{
+    let {id}=req.params
+    let comment=comments.find(cmt=>cmt.id == id)    
+    res.render('edit',{comment})
+})
+
+
+// task 6 ---> actually edit the blog using patch not by using put
+//we can not directly use patch in form so we have to use method overriding with npm
+// 
+app.patch('/blogs/:id',(req,res)=>{
+    let {id}=req.params
+    let foundComment=comments.find(cmt=>cmt.id == id) 
+    let {comment}=req.body
+    foundComment.comment=comment
+    res.redirect('/blogs')
+})
+
+// task 6 ---> to delete a blog
+
+app.delete('/blogs/:id',(req,res)=>{
+    let {id}=req.params
+    let newAr=comments.filter((cmt)=>{
+        return cmt.id!=id
+    })
+    comments=newAr;
+    res.redirect('/blogs')
 })
 
 
