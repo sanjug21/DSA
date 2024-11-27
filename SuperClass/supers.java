@@ -161,7 +161,6 @@ public class supers {
             System.out.println(val+" ");
         }
 
-
         //System.out.println(power(5, 10));
 
 
