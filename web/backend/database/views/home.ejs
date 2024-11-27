@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%for(let item of allMovies){ %>
+        <h1>Name:<%=  item.name %></h1>
+        <h3>rating: <%= item.rating %></h3>
+        <h3>Watched: <%= item.watched %></h3>
+        
+        <br>
+        <a href="/<%= item.name %>"> show Details</a>
+        <%}%>
+</body>
+</html>
+
+<!-- db.products.insertMany([{name:"Sanju",price:5000,image:"https://images.unsplash.com/photo-1731450451244-e307651f5f50?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D",description:"Image used first time"}]) -->
