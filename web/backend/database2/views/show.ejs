@@ -1,0 +1,19 @@
+<%- include('./partials/header.ejs') %>
+
+
+<h1 class="text-center text-4xl bg-red-500 m-0">Details of all the Zoos</h1>
+<div class=" row flex flex-row justify-start">
+<% for(let i of allZoo){ %>
+    <div class="border-green-200 border  w-1/4 h-1/3 md:w-1/2 ">
+    <h1 class="text-center bg-cyan-100"><%= i.zooName %></h1>
+    <img src="<%= i.zooImageUrl %>" alt="">
+    <button class="rounded-lg bg-green-500 border "> <a href="/<%= i._id %>">Show Details</a></button>
+    <button class="rounded-lg bg-green-500 border ">    <a href="/editpage/<%= i._id %>">Edit Details</a>
+    </button>
+    <form action="/delete/<%= i._id %>?_method=DELETE" method="POST">
+    <button class="rounded-lg bg-red-500 border w-full">Delete Zoo</button>   
+    </form>
+    </div>
+    <% }%>
+</div>
+<%- include('./partials/footer.ejs') %>

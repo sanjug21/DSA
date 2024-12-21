@@ -9,4 +9,4 @@ function getName(){
 var x=1;
 
 // Hoisting
-// it is abehavior in which a function or a variables can be used before they're declared
+// it is a behavior in which a function or a variables can be used before they're declared

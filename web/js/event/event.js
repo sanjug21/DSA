@@ -28,6 +28,7 @@ user.then(function ok(data){
     return data.json()
 }).then(
     (data)=>{
-        console.log(data)
+         console.log(data)
     }
 )
+
