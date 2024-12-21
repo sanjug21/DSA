@@ -93,7 +93,7 @@ app.patch('/blogs/:id',(req,res)=>{
     res.redirect('/blogs')
 })
 
-// task 6 ---> to delete a blog
+// task 7 ---> to delete a blog
 
 app.delete('/blogs/:id',(req,res)=>{
     let {id}=req.params

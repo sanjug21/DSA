@@ -44,3 +44,5 @@ function proceedToPayment(id){
         resolve("success");
     });
 }
+
+

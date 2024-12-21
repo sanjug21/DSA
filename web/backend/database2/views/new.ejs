@@ -1,0 +1,26 @@
+<%- include('./partials/header.ejs') %>
+
+<h1 class="text-center text-center text-4xl bg-red-500 m-0">Add Zoo Details</h1>
+
+<form action="/" method="POST">
+    <label for="name">Zoo Name:</label>
+    <br>
+    <input class="border-2 border-red-500 rounded w-1/2" type="text" id="name" name="zooName"><br><br>
+    <label for="num">Number of Animals:</label>
+    <br>
+    <input class="border-2 border-red-500 rounded w-1/2" type="number" id="num" name="numberOfAnimal"><br><br>
+    <label for="loc">Location:</label>
+    <br>
+    <input class="border-2 border-red-500 rounded w-1/2" type="text" id="loc" name="location"><br><br>
+    <label for="time">Opening Time:</label>
+    <br>
+    <input class="border-2 border-red-500 rounded w-1/2" type="time" id="time" name="openingDuration"><br><br>
+    <label for="url">Image URL:</label>
+    <br>
+    <input class="border-2 border-red-500 rounded w-1/2" type="text" id="url" name="zooImageUrl"><br><br>
+
+    
+    <button class="rounded bg-green-500 w-1/2">Add Details</button>
+</form>
+
+<%- include('./partials/footer.ejs') %>

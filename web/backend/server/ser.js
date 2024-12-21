@@ -11,7 +11,7 @@ app.listen(port,()=>{
 
 
 
-// Middleware =run everytime when use or browser makes a request //or run on every incoming request
+// Middleware =run everytime when user or browser makes a request //or run on every incoming request
 
 // app.use('/middle',(req,res,next)=>{
 //     console.log("mai hoon middleware");
@@ -40,8 +40,8 @@ app.get('/', (req, res) => {
 
   //Query
   app.get('/search', (req, res) => {
-    console.log(req.query);
-    console.log(req.query.search);
+    // console.log(req.query);
+    // console.log(req.query.search);
     let {search}=req.query
     console.log(search);
     res.send(search)
