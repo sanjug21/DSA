@@ -1,0 +1,18 @@
+git init                     // to intialize
+git add .                    // to add all files
+git commit -m "message"      // to commit the files
+git status                   // to see the stuus of files
+git log                      // to see recent changes
+git checkout  versionid      // to switch to specific version
+
+git checkout branchname      // Switch to specfic branchname
+git branch                   // to see the all branches
+git branch branchName        // to create new branck
+git checkout -b branchName   // to create new branch and sitch to it
+git branch -d branchname     // to delete a specific branch
+
+git merger branchname        // to merge branch to main
+git diff versionid versionid // to show dif b/w two files
+
+git clone link               // to clone a repo
+git pull origin main         // to get latest code
