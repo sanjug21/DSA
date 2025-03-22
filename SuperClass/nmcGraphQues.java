@@ -2,6 +2,7 @@ import java.util.*;
 
 import OOPS.stac;
 
+
 public class nmcGraphQues {
     public static class Pair{
         int e;

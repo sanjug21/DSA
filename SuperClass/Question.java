@@ -91,14 +91,103 @@ public class Question {
 
         return dp[n][e] = ans;
     }
-    
+    public static void printSubSeq(String str){
+        int n=str.length();
+        for(int i=0;i<(1<<n);i++){
+           Pattern(str, i);
+              System.out.println();
+        }
+    }
+    public static void Pattern(String str, int i){
+       int pos=0;
+       while(i>0){
+           if((i&1)==1)System.out.print(str.charAt(pos));
+           i>>=1;
+           pos++;
+    }
+    public static void PreparingOlympiad(){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        int x = sc.nextInt();
+        int a[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        int ans = 0;
+        for (int i = 0; i < (1 << n); i++) {
+            if(CountBits(i)>=2 && isItPossible(a, l, r, x, i)){
+                ans++;
+            }
+        }
+        System.out.println(ans);
+        sc.close();
+    }
+    public static boolean isItPossible(int a[],int l,int r,int x,int i){
+        int sum=0;
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        int pos=0;
+        while (i>0) {
+            if((i & 1 )!=0){
+                sum+=a[pos];
+                min=Math.min(min,a[pos]);
+                max=Math.max(max,a[pos]);
+            }
+            i>>=1;
+            pos++;
+        }
+        return sum>=l && sum<=r && max-min>=x;
+    }
+    public static int CountBits(int n){
+        int count=0;
+        while(n!=0){
+            count++;
+            n&=(n-1);
+        }
+        return count;
+    }
+
+    public static void EhabAndXorcist(){
+        Scanner sc = new Scanner(System.in);
+        
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            if (u > v || (u % 2 != v % 2)) {
+                System.out.println(-1);
+            }
+            else if (u == v) {
+                if (u == 0) {
+                    System.out.println(0);
+                } else {
+                    System.out.println(1);
+                    System.out.println(u);
+                }
+            }
+            else{
+                int x = (v - u) / 2;
+                if ((u & x) == 0) {
+                    System.out.println(2);
+                    System.out.println((u ^ x) + " " + x);
+                } else {
+                    System.out.println(3);
+                    System.out.println(u + " " + x + " " + x);
+                }
+            }
+       
+    }
     public static void main(String[] args) {
+        PreparingOlympiad();
+        //  printSubSeq("abcd");
+       
+
 
         // Egg Drop
-        int n=9,e=3;
-        int[][] dp = new int[n+1][e+1];
-        for (int[] row : dp) Arrays.fill(row, -1);
-        System.out.println(EggDrop(n, e, dp));
+        // int n=9,e=3;
+        // int[][] dp = new int[n+1][e+1];
+        // for (int[] row : dp) Arrays.fill(row, -1);
+        // System.out.println(EggDrop(n, e, dp));
 
 
         // mixture problem
