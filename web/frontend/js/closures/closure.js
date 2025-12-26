@@ -8,6 +8,7 @@ function x(){
 }
 
 var z=x()
+console.log(z) // function y;
 
 z()
 

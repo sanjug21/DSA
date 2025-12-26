@@ -42,10 +42,10 @@ let c=function (){
 // Call Back functions  ---> when a function is passed in another function then it is called as callback function
 
 function x(y){
-
+    y() // calling the function passed as argument
 }
 
-x(function y(){})
+x(function y(){console.log("this is a callback function")})
 
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------
