@@ -309,6 +309,28 @@ public class hard {
         }
         return ans;
     }
+    
+    // 1392. Longest Happy Prefix
+
+    public static String longestPrefix(String s) {
+        int n=s.length();
+        int dp[]=new int [n];  
+        int i=1,len=0;
+        while(i<n){
+          if(s.charAt(i)==s.charAt(len)){
+              dp[i]=++len;
+              i++;
+          }
+          else{
+              if(len>0){
+                  len=dp[len-1];
+              }else{
+                  i++;
+              }
+          }
+        }
+        return s.substring(0,len);
+      }
   
 
     public static void main(String[] args) {
